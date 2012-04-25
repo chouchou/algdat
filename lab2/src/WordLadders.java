@@ -93,16 +93,16 @@ public class WordLadders {
 				}
 			}
 		}
-		for(Node n : nodes){
-			System.out.println(n.toString()+" ->" + n.neighbours());
-		}
+		//for(Node n : nodes){
+		//	System.out.println(n.toString()+" ->" + n.neighbours());
+		//}
 		// BFS
 		String[] pair;
 		for (String s : testcases){
 			pair = s.split(" ");
 			//int ind;
 			Node root = nodes.get(nodes.indexOf(new Node(pair[0])));
-			//System.out.println(root.toString());
+			System.out.println(nodes.get(142)+"--"+nodes.get(142).neighbours());
 			Node target = nodes.get(nodes.indexOf(new Node(pair[1])));
 			//System.out.println(target.toString());
 			//boolean[] visited = new boolean[nodes.size()];
@@ -114,24 +114,19 @@ public class WordLadders {
 			boolean flag = false;
 			while(!q.isEmpty()){
 				Node tmp = q.poll();
-				System.out.println(tmp);
+				System.out.println("nuvarande nod: "+tmp+", och hans grannar: "+ tmp.neighbours());
 				int depth = d.poll();
-				//ind = nodes.indexOf(tmp);
-				//visited[ind]=true;
 				vis.add(tmp);
 				if(tmp.equals(target)){
 					System.out.println(depth);
 					flag= true;
 					break;
 				}else{
-					for (Node n : tmp.neighbours()){
-						//ind = nodes.indexOf(n);
-						
-						if(!vis.contains(n)){//!visited[ind]
+					for (Node n : tmp.neighbours()){	
+						if(!vis.contains(n)){
 							q.offer(n);
 							d.offer(depth+1);
-							System.out.println("-->"+n.toString());
-							//visited[ind]=true;
+							System.out.println("lägger till barn: "+n.toString()+", med grannar: "+n.neighbours());
 						}
 					}
 				}
